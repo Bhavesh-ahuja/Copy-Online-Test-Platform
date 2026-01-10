@@ -19,6 +19,7 @@ export const register = async (req, res) => {
     const { password: _, ...userWithoutPassword } = newUser;
     res.status(201).json(userWithoutPassword);
   } catch (error) {
+    console.error("REGISTRATION ERROR:", error);
     res.status(500).json({ error: 'Failed to register user' });
   }
 };
