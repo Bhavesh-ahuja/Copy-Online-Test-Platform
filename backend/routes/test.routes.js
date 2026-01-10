@@ -9,7 +9,7 @@ import {
   getTestSubmissions,
   updateTest,
   deleteTest,
-  uploadTestPDF,
+  // uploadTestPDF,
   startTest,
 } from '../controllers/test.controller.js';
 import multer from "multer";
@@ -34,13 +34,13 @@ router.get('/', authenticateToken, getAllTests);
 router.post('/', authenticateToken, isAdmin, createTest);
 
 // POST /api/tests/upload-pdf - Admin only: Upload test PDF
-router.post(
-  '/upload-pdf',
-  authenticateToken,
-  isAdmin,
-  upload.single('file'),
-  uploadTestPDF
-);
+// router.post(
+//   '/upload-pdf',
+//   authenticateToken,
+//   isAdmin,
+//   upload.single('file'),
+//   uploadTestPDF
+// );
 
 // GET /api/tests/my-submissions - Get all submissions of logged-in user
 // IMPORTANT: Must come BEFORE `/:id`
