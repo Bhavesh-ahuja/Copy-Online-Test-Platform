@@ -71,47 +71,47 @@ function CreateTestPage() {
   };
 
   // --- PDF Management ---
-  // const handleFileUpload = async (e) => {
-  //   const file = e.target.files[0];
-  //   if (!file) return;
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-  //   setIsUploading(true);
-  //   const token = localStorage.getItem('token');
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-  //   try {
-  //     const response = await fetch(`${API_BASE_URL}/api/tests/upload-pdf`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Authorization': `Bearer ${token}`
-  //         // Do not set Content-Type for FormData
-  //       },
-  //       body: formData
-  //     });
+    setIsUploading(true);
+    const token = localStorage.getItem('token');
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/tests/upload-pdf`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+          // Do not set Content-Type for FormData
+        },
+        body: formData
+      });
 
-  //     const data = await response.json();
-  //     if (!response.ok) throw new Error(data.error || 'Failed to upload PDF');
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Failed to upload PDF');
 
-  //     // Logic: If the current form has only 1 empty question, replace it.
-  //     // Otherwise, append the new questions to the bottom.
-  //     if (questions.length === 1 && questions[0].text === '') {
-  //       setQuestions(data.questions);
-  //     } else {
-  //       // Confirmation before appending
-  //       if (window.confirm(`Found ${data.questions.length} questions. Append them to your existing list?`)) {
-  //         setQuestions([...questions, ...data.questions]);
-  //       }
-  //     }
+      // Logic: If the current form has only 1 empty question, replace it.
+      // Otherwise, append the new questions to the bottom.
+      if (questions.length === 1 && questions[0].text === '') {
+        setQuestions(data.questions);
+      } else {
+        // Confirmation before appending
+        if (window.confirm(`Found ${data.questions.length} questions. Append them to your existing list?`)) {
+          setQuestions([...questions, ...data.questions]);
+        }
+      }
 
-  //     alert(`Successfully imported ${data.questions.length} questions! Review them below.`);
+      alert(`Successfully imported ${data.questions.length} questions! Review them below.`);
 
-  //   } catch (error) {
-  //     alert("Import Error: " + error.message);
-  //   } finally {
-  //     setIsUploading(false);
-  //     e.target.value = null; // Reset input
-  //   }
-  // };
+    } catch (error) {
+      alert("Import Error: " + error.message);
+    } finally {
+      setIsUploading(false);
+      e.target.value = null; // Reset input
+    }
+  };
 
   // --- Submit ---
   const handleSubmit = async (e) => {
