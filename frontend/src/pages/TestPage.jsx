@@ -141,7 +141,7 @@ function TestPage() {
 
       try {
         // Step A: Fetch Test Content
-        const testRes = await fetch(`http://localhost:8000/api/tests/${id}`, {
+        const testRes = await fetch(`${API_BASE_URL}/api/tests/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!testRes.ok) throw new Error('Failed to fetch test data');
@@ -153,7 +153,7 @@ function TestPage() {
         setTest(data);
 
         // Step B: Start/Resume Test Session (Get Start Time & Verify Schedule)
-        const startRes = await fetch(`http://localhost:8000/api/tests/${id}/start`, {
+        const startRes = await fetch(`${API_BASE_URL}/api/tests/${id}/start`, {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
         });
